@@ -13,6 +13,7 @@ let mapleader=" "
     Plug 'altercation/vim-colors-solarized'
     Plug 'scrooloose/nerdtree'
     Plug 'w0rp/ale'
+    Plug 'itchyny/lightline.vim'
     
     call plug#end()
 
@@ -49,6 +50,9 @@ let mapleader=" "
 	nnoremap <space> za
 
 " Statusline
+    let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ }
 
 " NERDTree file explorer
 	map <C-n> :NERDTreeToggle<CR>
