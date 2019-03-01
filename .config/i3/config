@@ -189,4 +189,4 @@ bindsym $mod+r mode "resize"
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Start feh wallpaper
-exec_always --no-startup-id xwallpaer --zoom /home/nick/Pictures/wallpaper.jpg
+exec_always --no-startup-id xwallpaper --zoom $HOME/Pictures/wallpaper.jpg
