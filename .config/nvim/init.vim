@@ -8,9 +8,9 @@ let mapleader=" "
     endif
 
 " Load Plugins with vim-plug
-    call plug#begin('~/.vim/plugged')
+    call plug#begin('~/.config/nvim/plugged')
     
-"    Plug 'altercation/vim-colors-solarized'
+    Plug 'altercation/vim-colors-solarized'
     Plug 'scrooloose/nerdtree'
     Plug 'w0rp/ale'
     Plug 'itchyny/lightline.vim'
@@ -26,7 +26,7 @@ let mapleader=" "
 	set relativenumber
 	
 	set background=dark
-"	colorscheme solarized
+	colorscheme solarized
 
 " Split navigation with CTRL + hjkl
 	set splitbelow
