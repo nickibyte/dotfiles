@@ -11,6 +11,7 @@ let mapleader=" "
     call plug#begin('~/.config/nvim/plugged')
     
     Plug 'altercation/vim-colors-solarized'
+"    Plug 'morhetz/gruvbox'
     Plug 'scrooloose/nerdtree'
     Plug 'w0rp/ale'
     Plug 'itchyny/lightline.vim'
@@ -27,6 +28,7 @@ let mapleader=" "
 	
 	set background=dark
 	colorscheme solarized
+"	colorscheme gruvbox
 
 " Split navigation with CTRL + hjkl
 	set splitbelow
