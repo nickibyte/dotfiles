@@ -10,9 +10,9 @@ let mapleader=" "
 " Load Plugins with vim-plug
     call plug#begin('~/.config/nvim/plugged')
     
-    Plug 'altercation/vim-colors-solarized'
-"    Plug 'morhetz/gruvbox'
-    Plug 'scrooloose/nerdtree'
+"    Plug 'altercation/vim-colors-solarized'
+    Plug 'morhetz/gruvbox'
+    Plug 'shinchu/lightline-gruvbox.vim'
     Plug 'w0rp/ale'
     Plug 'itchyny/lightline.vim'
     
@@ -27,8 +27,8 @@ let mapleader=" "
 	set relativenumber
 	
 	set background=dark
-	colorscheme solarized
-"	colorscheme gruvbox
+"   colorscheme solarized
+	colorscheme gruvbox
 
 " Split navigation with CTRL + hjkl
 	set splitbelow
@@ -42,8 +42,8 @@ let mapleader=" "
 " Indentation
 	set tabstop=4
 	set shiftwidth=4
-	set softtabstop=4
-	set expandtab
+	set softtabstop=0
+	set noexpandtab
 
 " Code folding with space
 	set foldmethod=indent
@@ -52,12 +52,7 @@ let mapleader=" "
 	nnoremap <space> za
 
 " Statusline
-    let g:lightline = {
-        \ 'colorscheme': 'solarized',
-        \ }
-
-" NERDTree file explorer
-	map <C-n> :NERDTreeToggle<CR>
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif  "Closes NERDTree with VIM
+	let g:lightline={}
+    let g:lightline.colorscheme='gruvbox'
 
 " netrw

@@ -9,26 +9,39 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-# Colors
-set $bg-color		 #749253
-set $inactive-bg-color  #5e5e5e
-set $text-color		 #f3f4f5
-set $inactive-text-color #676e7d
-set $urgent-bg-color	 #e53935
-set $indicator-color	 #b2bb50
-set $background-color	 #393939
+# Fallback colors
+set $bg			#282828
+set $red        #cc241d
+set $green      #98971a
+set $yellow     #d79921
+set $blue       #458588
+set $purple     #b16286
+set $aqua       #689d68
+set $gray       #a89984
+set $darkgray   #1d2021
+set $fg			#ebdbb2
 
 # Load colors from Xresources
-set_from_resource $xbg-color i3wm.color8 #ffffff
+set_from_resource $Xbg			i3wm.color0 $bg
+set_from_resource $Xred			i3wm.color1 $red
+set_from_resource $Xgreen		i3wm.color2 $green
+set_from_resource $Xyellow		i3wm.color3 $yellow
+set_from_resource $Xblue		i3wm.color4 $blue
+set_from_resource $Xpurple		i3wm.color5 $purple
+set_from_resource $Xaqua		i3wm.color6 $aqua
+set_from_resource $Xgray		i3wm.color7 $gray
+set_from_resource $Xdarkgray	i3wm.color0 $darkgray
+set_from_resource $Xfg			i3wm.color15 $fg
 
 # Window colors
-#			border		   background	      text		   indicator
-client.focused		$bg-color	   $bg-color	      $text-color	   $indicator-color
-client.unfocused	$inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
-client.urgent		$urgent-bg-color   $urgent-bg-color   $text-color	   $indicator-color
+#			            border		background	text		indicator	child_border	
+client.focused			$Xgreen		$Xbg		$Xgray		$Xpurple  	$Xgreen	
+client.focused_inactive $Xbg		$Xbg		$Xgray		$Xbg		$Xbg		   
+client.unfocused		$Xbg		$Xbg		$Xdarkgray	$Xbg		$Xbg		   
+client.urgent			$Xred		$Xbg		$Xfg		$Xbg		$Xred	   
+client.placeholder		$Xbg		$Xbg		$Xdarkgray	$Xbg		$Xbg		   
 
-client.background $background-color
+client.background $Xbg
 
 
 set $mod Mod1
@@ -120,18 +133,17 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+# Define names for workspaces
+set $ws1 "01 >"
+set $ws2 "02 >"
+set $ws3 "03 >"
+set $ws4 "04 >"
+set $ws5 "05 >"
+set $ws6 "06 >"
+set $ws7 "07 >"
+set $ws8 "08 >"
+set $ws9 "09 >"
+set $ws10 "10 >"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -194,7 +206,16 @@ bindsym $mod+r mode "resize"
 # Bar
 bar {
     colors {
-        background $xbg-color
+        background $Xbg
+        statusline $Xfg
+		separator $Xgray
+		
+		# Workspace colors	border		background		text
+		focused_workspace	$Xgreen		$Xgreen			$Xbg
+		active_workspace	$Xbg		$Xbg			$Xfg
+		inactive_workspace	$Xbg		$Xbg			$Xfg
+		urgent_workspace	$Xred		$Xred			$Xbg
+
     }
     status_command i3blocks
     position top
@@ -206,4 +227,4 @@ bar {
 exec_always --no-startup-id display -window root $HOME/Pictures/wallpaper.jpg
 
 # Switch to workspace 1
-exec --no-startup-id i3-msg -q workspace 1
+exec --no-startup-id i3-msg -q workspace $ws1
