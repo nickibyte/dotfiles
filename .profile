@@ -1,6 +1,7 @@
 #
-# Nick's .profile
+# Nickibyte's .profile
 #
+
 
 # Environment variables
 export EDITOR="nvim"

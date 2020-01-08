@@ -1,3 +1,8 @@
+!!
+!! Nick's .Xresources
+!!
+
+
 !! Gruvbox colors
 *.background: #282828
 *.foreground: #ebdbb2
@@ -18,5 +23,6 @@
 *.color14: #8ec07c
 *.color15: #ebdbb2
 
-!! Set a default font and font size as below:
-*.font: Monospace-14
+!! Fonts
+*.font: monospace-16
+rofi.font: monospace 16

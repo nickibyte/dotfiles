@@ -1,4 +1,7 @@
-let mapleader=" "
+"
+" Nickibyte's  init.vim
+"
+
 
 " Install vim-plug if necessary
     if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -10,11 +13,10 @@ let mapleader=" "
 " Load Plugins with vim-plug
     call plug#begin('~/.config/nvim/plugged')
     
-"    Plug 'altercation/vim-colors-solarized'
     Plug 'morhetz/gruvbox'
+    Plug 'itchyny/lightline.vim'
     Plug 'shinchu/lightline-gruvbox.vim'
     Plug 'w0rp/ale'
-    Plug 'itchyny/lightline.vim'
     
     call plug#end()
 
@@ -27,8 +29,9 @@ let mapleader=" "
 	set relativenumber
 	
 	set background=dark
-"   colorscheme solarized
 	colorscheme gruvbox
+	
+	let mapleader=" "
 
 " Split navigation with CTRL + hjkl
 	set splitbelow
@@ -45,11 +48,21 @@ let mapleader=" "
 	set softtabstop=0
 	set noexpandtab
 
-" Code folding with space
+" Code folding
 	set foldmethod=indent
 	set foldlevel=99
 
-	nnoremap <space> za
+" Copy/paste to clipboard
+	set clipboard+=unnamedplus
+
+	vnoremap <leader>y "+y
+	nnoremap <leader>y "+y
+	nnoremap <leader>Y "+yg_
+
+	nnoremap <leader>p "+p
+	nnoremap <leader>P "+P
+	vnoremap <leader>p "+p
+	vnoremap <leader>P "+P
 
 " Statusline
 	let g:lightline={}
