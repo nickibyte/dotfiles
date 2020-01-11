@@ -16,21 +16,46 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles --work-tree=$HOME'
 autoload -Uz colors && colors
 
 setopt PROMPT_SUBST    # Enable variables in prompt
+ZLE_RPROMPT_INDENT=0    # Removes whitespace after prompt
 autoload -Uz vcs_info    # Enable VersionControlSystem_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr '%F{1}'
-zstyle ':vcs_info:git:*' unstagedstr '%F{1}'
-zstyle ':vcs_info:git:*' formats '%F{15}[%F{3}%c%u%b%F{15}]'    # Current git branch: [branch]
+zstyle ':vcs_info:git:*' stagedstr '%F{3}'    # Unpushed color
+zstyle ':vcs_info:git:*' unstagedstr '%F{1}'    # Unstaged or uncommited color
+zstyle ':vcs_info:git:*' formats '%F{15}[%F{2}%c%u%b%F{15}]'    # Current git branch: [branch]
 
-#GIT='%B${vcs_info_msg_0_}%F{15}%b'
+# Show remote repository status
+# Copied from Timothy Basanov's Blog (https://timothybasanov.com/2016/05/13/zsh-vcs_info-git-remote-status.html)
+zstyle ':vcs_info:git+post-backend:*' hooks git-remote-staged
 
-TIME="%B%F{4}[%F{15}%D{%L:%M}%F{4}]%F{15}%b"    # Current time in 12h format: [H:mm]
+function +vi-git-remote-staged() {
 
-PS1="%B%F{4}[%F{13}%~%F{4}]%F{15}$%b "    # Current directory: [~/dir/pwd]$
-RPS1='%B${vcs_info_msg_0_}%F{15}%b $TIME'
+  # Set "unstaged" when git reports either staged or unstaged changes
+  if (( gitstaged || gitunstaged )) ; then
+    gitunstaged=1
+  fi
+
+  # Set "staged" when current HEAD is not present in the remote branch
+  if (( querystaged )) && \
+     [[ "$(${vcs_comm[cmd]} rev-parse --is-inside-work-tree 2> /dev/null)" == 'true' ]] ; then
+      # Default: off - these are potentially expensive on big repositories
+      if ${vcs_comm[cmd]} rev-parse --quiet --verify HEAD &> /dev/null ; then
+          gitstaged=1
+          if ${vcs_comm[cmd]} branch -r --contains 2> /dev/null | read REPLY ; then
+            gitstaged=
+          fi
+      fi
+  fi
+
+  hook_com[staged]=$gitstaged
+  hook_com[unstaged]=$gitunstaged
+}
+
+
+PS1='%B%F{4}[%F{13}%~%F{4}]%f$%b  '    # Current directory: [~/dir/pwd]$
+RPS1='%B${vcs_info_msg_0_} %F{4}[%F{15}%D{%L:%M}%F{4}]%f%b'    # Git branch and time in 12h format: [branch] [H:mm]
 
 
 # History
