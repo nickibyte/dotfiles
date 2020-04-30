@@ -10,6 +10,18 @@ super + Return
 super + @space
 	rofi -show run
 
+# Create new Zettel
+super + n
+	zetnew
+
+# Search Zettelkasten
+super + z
+	st -e zetfind
+
+# Shutdown/Reboot/Logoff
+super + shift + q
+	rofishutdown
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd

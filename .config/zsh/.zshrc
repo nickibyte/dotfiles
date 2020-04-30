@@ -11,6 +11,9 @@ alias lla='ls --color=auto -la'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles --work-tree=$HOME'
 
+function zn() { nvim "+Zet $*" }
+function zf() { zetfind }
+
 
 # Prompt
 autoload -Uz colors && colors
