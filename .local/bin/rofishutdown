@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#
+
+action=$(echo "Shutdown|Reboot|Log out" | rofi -sep '|' -dmenu -i -no-custom -l 4 -p "Action")
+
+case $action in
+	Shutdown)
+		shutdown now
+		;;
+	Reboot)
+		reboot
+		;;
+	"Log out")
+		bspc quit
+		;;
+esac

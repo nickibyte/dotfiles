@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Promts for a title, creates new Zettel and opens it in nvim
+
+defaultTitle="New Zettel"
+title=$(echo $defaultTitle | rofi -dmenu -i -l 0 -no-fixed-num-lines -p "New Zettel")
+
+if [ -n "$title" ]; then
+	st -e nvim "+Zet $title"
+fi
