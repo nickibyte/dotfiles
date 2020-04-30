@@ -1,0 +1,44 @@
+* {
+    background-color: #282828;
+    text-color:	#ebdbb2;
+    font: "monospace 16";
+}
+
+window {
+    width: 35%;
+    y-offset: -5%;
+	border:	2px;
+	border-color: #d3869b;
+    padding: 25px;
+}
+
+inputbar {
+	spacing: 0;
+    children: [ textbox-pre-prompt, prompt, textbox-post-prompt, entry, case-indicator ];
+}
+
+textbox-pre-prompt,
+textbox-post-prompt,
+prompt {
+	highlight: bold underline;
+}
+
+textbox-pre-prompt,
+textbox-post-prompt {
+	expand: false;
+	text-color: #458588;
+}
+
+textbox-pre-prompt {
+	str: "[";
+}
+
+prompt {
+	spacing: 0;
+	text-color:	#d3869b;
+}
+
+textbox-post-prompt {
+	str: "]";
+	margin: 0 0.5em 0 0;
+}
