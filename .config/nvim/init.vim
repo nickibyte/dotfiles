@@ -12,7 +12,7 @@
 
 " Load Plugins with vim-plug
     call plug#begin('~/.config/nvim/plugged')
-    
+
     Plug 'morhetz/gruvbox'
     Plug 'itchyny/lightline.vim'
     Plug 'shinchu/lightline-gruvbox.vim'
@@ -27,11 +27,24 @@
 	set encoding=utf-8
 	set number
 	set relativenumber
-	
+	set colorcolumn=80
+
+	" Only display cursorline in current window
+	augroup CursorLine
+	  au!
+	  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+	  au WinLeave * setlocal nocursorline
+	augroup END
+
+	set termguicolors
 	set background=dark
+	let g:gruvbox_contrast_dark='medium'
 	colorscheme gruvbox
-	
+
 	let mapleader=" "
+
+" Clear search highlighting
+	nnoremap <silent> <cr> :noh<CR><CR>
 
 " Split navigation with CTRL + hjkl
 	set splitbelow
