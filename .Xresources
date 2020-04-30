@@ -4,7 +4,10 @@
 
 
 !! Gruvbox colors
+! hard contrast: *.background: #1d2021
+! medium contrast: 
 *.background: #282828
+! soft contrast: *.background: #32302f
 *.foreground: #ebdbb2
 *.color0: #282828
 *.color1: #cc241d
