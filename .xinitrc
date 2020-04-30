@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Nick's .Xresources
+# Nick's .xinitrc
 #
 
 # Merge .Xresourses
