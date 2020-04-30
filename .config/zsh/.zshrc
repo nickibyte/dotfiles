@@ -4,10 +4,9 @@
 
 
 # Aliases
-alias ls='ls --color=auto'
-alias ll='ls --color=auto -l'
-alias la='ls --color=auto -a'
-alias lla='ls --color=auto -la'
+alias ls='ls --color=auto -F'
+alias la='ls --color=auto -AF'
+alias ll='ls --color=auto -lAFh'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles --work-tree=$HOME'
 
@@ -57,7 +56,7 @@ function +vi-git-remote-staged() {
 }
 
 
-PS1='%B%F{4}[%F{13}%~%F{4}]%f$%b  '    # Current directory: [~/dir/pwd]$
+PS1="%B%F{4}[%F{13}%~%F{4}]%f$%b "    # Current directory: [~/dir/pwd]$
 RPS1='%B${vcs_info_msg_0_} %F{4}[%F{15}%D{%L:%M}%F{4}]%f%b'    # Git branch and time in 12h format: [branch] [H:mm]
 
 
@@ -77,6 +76,10 @@ _comp_options+=(globdots)    # Include hidden files
 
 setopt AUTOCD    # If only directory path is entered, cd there
 
+function chpwd() {    # Auto ls -a on cd
+	emulate -L zsh
+	ls --color=auto -F
+}
 
 # Use vim keys in tab complete menu
 bindkey -M menuselect 'h' vi-backward-char
@@ -111,7 +114,7 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
-	
+
 zle-line-init() {
     echo -ne "\e[5 q"
 }
