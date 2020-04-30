@@ -147,3 +147,6 @@ done
 
 # Load zsh-syntax-highlighting (Needs to be installed separately)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+# Load broot shell function (broot needs to be installed separately)
+source /home/nick/.config/broot/launcher/bash/br
