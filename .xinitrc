@@ -16,6 +16,9 @@ setxkbmap -layout de -option caps:escape
 # Set mouse pointer on desktop background (fixes weird X cursor)
 xsetroot -cursor_name left_ptr
 
+# Set background color
+xsetroot -solid '#608577'
+
 # Start bspwm
 exec bspwm
 
