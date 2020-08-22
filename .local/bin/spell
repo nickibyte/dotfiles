@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Check word spelling using aspell and select spelling using fzf
+
+
+lang='en'
+word="$1"
+
+# Get language from first argument (if there is more than one)
+if [ $# -gt 1 ]; then
+	if [ "$1" = 'de' ]; then lang='de_DE'; fi # German
+	word="$2"
+fi
+
+# Get aspell suggestions and format for fzf
+list=$(echo "$word" | aspell -d $lang pipe --suggest | sed -E -e '1d; s/^.*: //g; s/, /\n/g')
+
+# Word spelled correctly, return
+if [ "$list" = "*" ]; then
+	echo "$word"
+# Show spelling suggestions
+elif [ -n "$list" ]; then
+	echo "$list" | fzf
+# No word entered
+else
+	echo "You must enter a word to spellcheck."
+fi
