@@ -4,14 +4,39 @@
 
 
 # Aliases
+
 alias ls='ls --color=auto -F'
 alias la='ls --color=auto -AF'
 alias ll='ls --color=auto -lAFh'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles --work-tree=$HOME'
 
-function zn() { nvim "+Zet $*" }
+# Git
+alias gs='git status'
+alias gap='git add -p'
+alias gc='git commit'
+alias gp='git push'
+
+# Ledger
+alias ldg='ledger -f $HOME/ldg/ledger.dat'
+
+function expenses() {
+	period="this month"
+	if [ -n "$1" ] && period=$1
+	ledger -f $HOME/ldg/ledger.dat --effective -s register ^Expenses -p $period
+}
+
+# Devour
+function ff() { devour "firefox $1" }
+function mp() { devour "mpv '$1'" }    # The extra quotes fix youtube streaming
+function vl() { devour "vlc $1" }
+function zat() { devour "zathura $1" }
+
+# Zettelkasten
 function zf() { zetfind }
+
+# Open new terminal in same directory
+function nt() { ($TERMINAL >/dev/null 2>&1 &) }
 
 
 # Prompt
