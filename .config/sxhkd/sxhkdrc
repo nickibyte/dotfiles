@@ -12,7 +12,7 @@ super + @space
 
 # Create new Zettel
 super + n
-	zetnew
+	st -e zetnew
 
 # Search Zettelkasten
 super + z

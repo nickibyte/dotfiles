@@ -1,9 +1,25 @@
-#!/bin/sh
+#!/bin/zsh
 
-# Searches Zettelkasten using fzf and opens Zettel in nvim
+# Searches Zettelkasten using fzf and opens/creates Zettel in nvim
 
-zettel=$(find $HOME/zet/* -printf '%f\n' | fzf --preview 'cat $HOME/zet/{}')
+defaultTitle="New Zettel"
+files=$(find $HOME/zet/* -printf '%f\n')
+input=$(echo "$defaultTitle\n$files" | fzf --print-query --preview 'cat $HOME/zet/{}')
 
-if [ -n "$zettel" ]; then
-	nvim $HOME/zet/$zettel
+# Exit if fzf was canceled (nothing was entered)
+if [ -n "$input" ]; then
+
+	zettel=$(echo $input | tail -1)
+
+	# If there is a match, open Zettel
+	if [ $(echo $input | wc -l) -gt 1 ] && [ $zettel != $defaultTitle ]; then
+		nvim $HOME/zet/$zettel
+		#echo "Open $zettel"
+
+	# If there isn't, create new Zettel
+	else
+		nvim "+Zet $zettel"
+		#echo "Create $zettel"
+	fi
+
 fi
