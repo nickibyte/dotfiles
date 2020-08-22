@@ -110,12 +110,22 @@
 	let g:ledger_commodity_sep = ' '
 	let g:ledger_align_at = 50
 
+	" Sort transactions by date and align columns
 	" Copied from Justyn Shull's Blog (https://justyn.io/blog/automatically-sort-and-align-ledger-transactions-in-vim)
 	function LedgerSort()
 		:%! ledger -f - print --sort 'date, amount' --date-format '\%Y-\%m-\%d'
 		:%LedgerAlign
 	endfunction
 	command LedgerSort call LedgerSort()
+	nnoremap <leader>ls :LedgerSort<CR>
+
+	" Replace text on current line with new transaction based on text
+	" And clear transaction immediately
+	nnoremap <leader>le :call ledger#entry()<CR>:call ledger#transaction_state_set(line('.'), '*')<CR>
+
+	" Toggle state of transaction (not cleared/cleared/unknown/pending)
+	nnoremap <leader>lc :call ledger#transaction_state_toggle(line('.'), ' *?!')<CR>
+
 
 " Markdown
 	set conceallevel=2
