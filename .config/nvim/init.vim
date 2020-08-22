@@ -39,12 +39,15 @@
 	  au WinLeave * setlocal nocursorline
 	augroup END
 
+	" Colorscheme
 	set termguicolors
 	set background=dark
 	let g:gruvbox_contrast_dark='medium'
 	colorscheme gruvbox
 
+	" Leader (remap space in normal mode to prevent moving cursor)
 	let mapleader=" "
+	nnoremap <Space> <NOP>
 
 " Clear search highlighting
 	nnoremap <silent> <cr> :noh<CR><CR>
