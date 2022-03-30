@@ -20,6 +20,7 @@ bspc config gapless_monocle      true
 
 # Rules
 bspc rule -a Zathura state=tiled
+bspc rule -a Emacs state=tiled
 
 # Start terminal
 st

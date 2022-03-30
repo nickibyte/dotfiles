@@ -2,8 +2,8 @@
 # Nickibyte's .profile
 #
 
-# Adds `~/.local/bin` to $PATH
-export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+# Adds `~/.local/bin` and DOOM Emacs to $PATH
+export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$HOME/.emacs.d/bin"
 
 # Environment variables
 export EDITOR="nvim"
