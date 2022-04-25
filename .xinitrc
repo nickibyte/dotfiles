@@ -17,8 +17,7 @@ setxkbmap -layout de -option caps:escape
 xsetroot -cursor_name left_ptr
 
 # Set background color
-xsetroot -solid '#608577'
+#xsetroot -solid '#608577' # Incompatible with picom
 
 # Start bspwm
 exec bspwm
-

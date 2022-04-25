@@ -27,16 +27,22 @@ function expenses() {
 }
 
 # Devour
-function ff() { devour "firefox $1" }
-function mp() { devour "mpv '$1'" }    # The extra quotes fix youtube streaming
-function vl() { devour "vlc $1" }
-function zat() { devour "zathura $1" }
+function ff() { devour "/usr/bin/firefox $1" }
+function mp() { devour "/usr/bin/mpv '$1'" }    # The extra quotes fix youtube streaming
+function vl() { devour "/usr/bin/vlc $1" }
+function zat() { devour "/usr/bin/zathura $1" }
 
 # Zettelkasten
 function zf() { zetfind }
 
 # Open new terminal in same directory
 function nt() { ($TERMINAL >/dev/null 2>&1 &) }
+
+# Start work RDP session
+alias workrdp='xfreerdp /cert:ignore /f /dynamic-resolution /floatbar:sticky:on,default:visible,show:always /u:n.klug /v:52.157.84.2:53341'
+
+# Start uni VPN
+alias univpn="/opt/cisco/anyconnect/bin/vpnui"
 
 
 # Prompt
@@ -174,4 +180,4 @@ done
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 # Load broot shell function (broot needs to be installed separately)
-source /home/nick/.config/broot/launcher/bash/br
+#source /home/nick/.config/broot/launcher/bash/br
