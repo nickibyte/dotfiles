@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# fzf menu for shutting down, rebooting or logging out of bspwm
+
+action=$(printf "Shutdown\nReboot\nLog out" | fzf --height 10 --layout reverse --border sharp)
+
+case $action in
+	Shutdown)
+		shutdown now
+		;;
+	Reboot)
+		reboot
+		;;
+	"Log out")
+		bspc quit
+		;;
+esac

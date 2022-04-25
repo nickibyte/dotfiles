@@ -5,10 +5,12 @@
 
 # Aliases
 
+# ls
 alias ls='ls --color=auto -F'
 alias la='ls --color=auto -AF'
 alias ll='ls --color=auto -lAFh'
 
+# Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles --work-tree=$HOME'
 
 # Git
@@ -32,8 +34,15 @@ function mp() { devour "/usr/bin/mpv '$1'" }    # The extra quotes fix youtube s
 function vl() { devour "/usr/bin/vlc $1" }
 function zat() { devour "/usr/bin/zathura $1" }
 
+# Handbrake
+alias handbrake='ghb'
+alias handbrake-cli='HandBrakeCLI'
+
 # Zettelkasten
 function zf() { zetfind }
+
+# Shutdown
+function sd() { fzfshutdown }
 
 # Open new terminal in same directory
 function nt() { ($TERMINAL >/dev/null 2>&1 &) }

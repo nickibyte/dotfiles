@@ -30,3 +30,8 @@ bspc config gapless_monocle      true
 # Rules
 bspc rule -a mpv state=fullscreen
 bspc rule -a Zathura state=tiled
+bspc rule -a Emacs state=tiled
+
+# Start terminal
+st
+bspc desktop -l monocle
